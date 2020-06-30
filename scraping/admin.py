@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from scraping.models import City, Language
+from scraping.models import City, Language, Vacancy
 
 
 class CityAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ class LanguageAdmin(admin.ModelAdmin):
 
 admin.site.register(City, CityAdmin)
 admin.site.register(Language, LanguageAdmin)
+admin.site.register(Vacancy)
