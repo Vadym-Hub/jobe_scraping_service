@@ -3,13 +3,25 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    {% for obj in object_list %}
-        <div class="card my-4">
-          <h5 class="card-header"><a href="{{ obj.url }}">{{ obj.title }}</a></h5>
-          <div class="card-body">
-            <p class="card-text">{{ obj.description }}</p>
-              <p>{{ obj.city.name }} | {{ obj.language.name }} | <small>{{ obj.timestamp }}</small></p>
-          </div>
-        </div>
-    {% endfor %}
+<div class="row">
+    <div class="col"><h2 class=" text-center my-3">Сервіс по сбору та розсилці вакансій</h2></div>
+</div>
+<div class="row ">
+    <div class="col-md-8 mx-auto my-2">
+        <p class="">
+            Кожний день ми аналізуємо сайти із вакансіями, згідно налаштувань наших подписчиків.
+            Всі підходящі вакансії, які були опубліковані на  сайтах за останні сутки,
+            записуються в базу данних і розсилаються автоматично, згідно їх налаштувань.
+            Ви можете продивитись актуальні вакансії, просто вибрав необхідне місто чи спеціальність.
+            Або, пройшовши не важку <a href="#"> регістрацію</a>,
+            отримувати кожний день лист зі списком нових вакансій за останні сутки, згідно Ваших налаштувать.
+        </p>
+        <form method="GET" action="#">
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Пошук</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

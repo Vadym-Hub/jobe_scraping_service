@@ -1,7 +1,10 @@
 from django.shortcuts import render
+
+from .forms import FindForm
 from .models import Vacancy
 
 
 def home_view(request):
-    qs = Vacancy.objects.all()
-    return render(request, 'scraping/home.html', {'object_list': qs})
+    """Пошук"""
+    form = FindForm()
+    return render(request, 'scraping/home.html', {'form': form})
