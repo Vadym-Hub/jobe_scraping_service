@@ -1,15 +1,25 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import ListView
 
 from .forms import FindForm
 from .models import Vacancy
 
 
-def home_view(request):
-    """Пошук"""
-    form = FindForm()
-    return render(request, 'scraping/home.html', {'form': form})
+# def home_view(request):
+#    """Пошук"""
+#    form = FindForm()
+#    return render(request, 'scraping/home.html', {'form': form})
+
+
+class HomeView(View):
+    form_class = FindForm
+#    initial = {'key': 'value'}
+#    template_name = 'scraping/home.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, 'scraping/home.html', {'form': form})
 
 
 class VacancyListView(ListView):
