@@ -16,7 +16,7 @@
             Або, пройшовши не важку <a href="#"> регістрацію</a>,
             отримувати кожний день лист зі списком нових вакансій за останні сутки, згідно Ваших налаштувать.
         </p>
-        <form method="GET" action="#">
+        <form method="GET" action="{% url 'scraping:list' %}">
             <div class="form-group">
                 {{ form.as_p }}
             </div>
