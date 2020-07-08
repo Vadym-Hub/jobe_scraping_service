@@ -2,8 +2,8 @@ import jsonfield  # Для цього потрібно поставити біб
 from django.db import models
 
 
-# Передача урлов для таблиці URL
 def default_urls():
+    """Передача урлов для таблиці URL"""
     return {"work": "", "rabota": "", "dou": "", "djinni": ""}
 
 

@@ -22,6 +22,7 @@ text_content = f"Розсилка вакансій {today}"
 from_email = EMAIL_HOST_USER
 empty = '<h2>На сьогодні по Вашим побажанням данні відсутні. </h2>'
 
+
 # Отримуємо данні від користувача та формуємо листа
 User = get_user_model()
 qs = User.objects.filter(send_email=True).values('city', 'language', 'email')
@@ -53,6 +54,7 @@ if users_dct:
             msg.attach_alternative(_html, "text/html")
             msg.send()
 
+
 # Формування листа помилок
 qs = Error.objects.filter(timestamp=today)
 subject = ''
@@ -75,6 +77,7 @@ if qs.exists():
         subject += f"Побажання користувачів {today}"
         text_content += "Побажання користувачів"
 
+
 # Формування листа урлов
 qs = Url.objects.all().values('city', 'language')
 urls_dct = {(i['city'], i['language']): True for i in qs}
@@ -84,7 +87,7 @@ for keys in users_dct.keys():
         if keys[0] and keys[1]:
             urls_err += f'<p"> Для міста: {keys[0]} і ЯП: {keys[1]} відсутні урли</p><br>'
 if urls_err:
-    subject += ' Відсутні урли '
+    subject += 'Відсутні урли'
     _html += '<hr>'
     _html += '<h2>Відсутні урли </h2>'
     _html += urls_err

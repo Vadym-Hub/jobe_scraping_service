@@ -1,9 +1,8 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as BS
 from random import randint
 
 
-# Імпорт з файлу для автоматизації
 __all__ = ('work', "rabota", 'dou', 'djinni')
 
 # Підставна інфа щоб бота прийняли за браузер
@@ -25,7 +24,7 @@ def work(url, city=None, language=None):
     if url:
         resp = requests.get(url, headers=headers[randint(0, 2)])
         if resp.status_code == 200:  # Перевірка на наявність данних
-            soup = BeautifulSoup(resp.content, 'html.parser')
+            soup = BS(resp.content, 'html.parser')
             # Пошук інфи проходить по div
             main_div = soup.find('div', id='pjax-job-list')
             if main_div:
@@ -60,7 +59,7 @@ def rabota(url, city=None, language=None):
     if url:
         resp = requests.get(url, headers=headers[randint(0, 2)])
         if resp.status_code == 200:  # Перевірка на наявність данних
-            soup = BeautifulSoup(resp.content, 'html.parser')
+            soup = BS(resp.content, 'html.parser')
             new_jobs = soup.find('div', attrs={'class': 'f-vacancylist-newnotfound'})
             # Div запакований в таблиці тому пошук інфи проходить по таблицям у яких є id
             if not new_jobs:
@@ -100,7 +99,7 @@ def dou(url, city=None, language=None):
     if url:
         resp = requests.get(url, headers=headers[randint(0, 2)])
         if resp.status_code == 200:  # Перевірка на наявність данних
-            soup = BeautifulSoup(resp.content, 'html.parser')
+            soup = BS(resp.content, 'html.parser')
             main_div = soup.find('div', id='vacancyListId')
             if main_div:
                 li_lst = main_div.find_all('li', attrs={'class': 'l-vacancy'})
@@ -134,7 +133,7 @@ def djinni(url, city=None, language=None):
     if url:
         resp = requests.get(url, headers=headers[randint(0, 2)])
         if resp.status_code == 200:  # Перевірка на наявність данних
-            soup = BeautifulSoup(resp.content, 'html.parser')
+            soup = BS(resp.content, 'html.parser')
             # Div відсутній, шукаєм по классам
             main_ul = soup.find('ul',  attrs={'class': 'list-jobs'})
             if main_ul:

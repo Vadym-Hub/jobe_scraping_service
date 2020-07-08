@@ -1,6 +1,6 @@
 from django import forms
 
-from scraping.models import City, Language, Vacancy
+from scraping.models import City, Language
 
 
 class FindForm(forms.Form):

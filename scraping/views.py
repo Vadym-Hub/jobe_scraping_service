@@ -6,20 +6,15 @@ from .forms import FindForm
 from .models import Vacancy
 
 
-# def home_view(request):
-#    """Пошук"""
-#    form = FindForm()
-#    return render(request, 'scraping/home.html', {'form': form})
-
-
 class HomeView(View):
+    """Пошук"""
     form_class = FindForm
-#    initial = {'key': 'value'}
-#    template_name = 'scraping/home.html'
+    initial = {'key': 'value'}
+    template_name = 'scraping/home.html'
 
     def get(self, request):
-        form = self.form_class()
-        return render(request, 'scraping/home.html', {'form': form})
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
 
 class VacancyListView(ListView):
@@ -27,15 +22,14 @@ class VacancyListView(ListView):
     model = Vacancy
     template_name = 'scraping/list.html'
     form = FindForm()
-    paginate_by = 2
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        # Те, що ми перекидуєм в контекст
+        """Те, що ми перекидуєм в контекст"""
         context = super().get_context_data(**kwargs)
         context['city'] = self.request.GET.get('city')
         context['language'] = self.request.GET.get('language')
         context['form'] = self.form
-
         return context
 
     def get_queryset(self):
