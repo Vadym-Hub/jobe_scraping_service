@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Kranky;
+    src: url(../fonts/Kranky-Regular.ttf);
+}
+#brand {
+    font-family: Kranky;
+    color: #F00;
+}
