@@ -57,9 +57,9 @@ def update_view(request):
                 messages.success(request, 'Данні збережені.')
                 return redirect('accounts:update')
 
-        form = UserUpdateForm(
-            initial={'city': user.city, 'language': user.language,
-                     'send_email': user.send_email})
+        form = UserUpdateForm(initial={'city': user.city,
+                                       'language': user.language,
+                                       'send_email': user.send_email})
         return render(request, 'accounts/update.html',
                       {'form': form, 'contact_form': contact_form})
     else:
