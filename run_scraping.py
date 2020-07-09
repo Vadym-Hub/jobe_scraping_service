@@ -1,4 +1,5 @@
 import asyncio
+import codecs
 import sys
 import os
 import datetime as dt
@@ -91,7 +92,6 @@ for job in jobs:
         v.save()
     except DatabaseError:
         pass
-
 # Запис помилок в БД
 if errors:
     qs = Error.objects.filter(timestamp=dt.date.today())
@@ -101,3 +101,7 @@ if errors:
         err.save()
     else:
         er = Error(data=f'errors:{errors}').save()
+
+h = codecs.open('work.txt', 'w', 'utf-8')
+h.write(str(jobs))
+h.close()

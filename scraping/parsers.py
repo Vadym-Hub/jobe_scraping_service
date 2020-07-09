@@ -158,3 +158,4 @@ def djinni(url, city=None, language=None):
         else:
             errors.append({'url': url, 'title': "Page do not response"})
     return jobs, errors
+
